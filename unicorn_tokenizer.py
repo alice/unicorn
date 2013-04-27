@@ -103,14 +103,14 @@ token_exprs = [
     (r'(list)',                  RESERVED),
     (r'(starting)',              RESERVED),
     (r'(otherwise)',             RESERVED),
-    (r'(show)',                  RESERVED),
+    (r'(show)',                  ShowToken),
     (r'(stop)',                  RESERVED),
     (r'(end)',                   RESERVED),
     (r'(to)',                    RESERVED),
     (r'(using)',                 RESERVED),
     (r'(randomize)',             RESERVED),
-    (r'(prompt)',             RESERVED),
-    (r'([A-Za-z][A-Za-z0-9_]*)', IdToken),    
+    (r'(prompt)',                RESERVED),
+    (r'([A-Za-z][A-Za-z0-9_]*)', IdToken),
     (r'\'',                    None),
 ]
 
@@ -130,9 +130,12 @@ def next():
         # return None
 
 def expression(rbp=0):
+    print "expression(%d)" % rbp
     global token
     t = token
+    print "t is %s" % t
     token = next()
+    print "token is %s" % token
     left = t.nud()
     while rbp < token.lbp:
         t = token
@@ -142,4 +145,4 @@ def expression(rbp=0):
 
 def parse():
     return expression()
-   
+

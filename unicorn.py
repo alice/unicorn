@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import unicorn_lexer
+
 # Tokens are hard-coded, but the parser executes simple assignemtn and print statement.
 global_env = {}
 
@@ -96,7 +98,12 @@ if __name__ == "__main__":
 	"""
 
 	# [SymbolToken("x"), AssignToken(), QuoteToken(), StringToken("Hello World")...]
-
+        program = """
+          x <- "Hello World"
+          show x
+        """
+        tokens = unicorn_lexer.lex(program)
+        print tokens
 
 	sym = Symbol("x")
 	l = Literal("Hello World")

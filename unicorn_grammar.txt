@@ -1,8 +1,8 @@
-file_input: stmt_list ENDMARKER
+file_input: stmt_list EOF
 
 stmt_list: (NEWLINE | stmt)*
 
-stmt: simple_stmt | compound_stmt
+stmt: (simple_stmt | compound_stmt) NEWLINE
 
 simple_stmt: print_stmt | assignment
 
@@ -10,7 +10,7 @@ print_stmt: 'show' (atom)+
 
 atom: ( NAME | NUMBER | STRING+ )
 
-compound_stmt: if_stmt | loop_stmt 
+compound_stmt: if_stmt | loop_stmt
 
 if_stmt: is_stmt ( 'or' is_stmt)* [otherwise_stmt] 'end'
 
