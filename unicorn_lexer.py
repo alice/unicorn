@@ -3,7 +3,7 @@ import re
 
 token_exprs = [
     (r'([ \t]+)',                None),
-    (r'(^[ \t]*\n)',              None),
+    (r'(^[ \t]*\n)',             None),
     (r'(\n)',                    'newline'),
     (r'([0-9]+)',                'int'),
     (r'"(.*)"',                  'string'),
